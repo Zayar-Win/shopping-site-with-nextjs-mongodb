@@ -154,7 +154,7 @@ const Login = () => {
             </Button>
           </ListItem>
           <ListItem>
-            Don't have an account? &nbsp;{" "}
+            Dont have an account?&nbsp;{" "}
             <NextLink
               href={`/register?redirect=${
                 redirect ? redirect : "/"
