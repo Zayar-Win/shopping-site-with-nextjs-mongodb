@@ -70,7 +70,7 @@ function PlaceOrder() {
     try {
       setLoading(true);
       const res = await axios.post(
-        "/api/order",
+        "http://localhost:3000/api/order",
         {
           orderItems: cartItems,
           shippingAddress,

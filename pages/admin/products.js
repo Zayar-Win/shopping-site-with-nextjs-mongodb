@@ -129,7 +129,7 @@ function AdminDashboard() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `/api/admin/products`,
+          `http://localhost:3000/api/admin/products`,
           {
             headers: {
               authorization: `Bearer ${userInfo.token}`,

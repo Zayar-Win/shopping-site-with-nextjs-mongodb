@@ -40,7 +40,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const user = await axios.post(
-        "/api/user/login",
+        "http://localhost:3000/api/user/login",
         { email, password }
       );
       if (user) {

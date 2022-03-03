@@ -59,7 +59,7 @@ const Profile = () => {
 
     try {
       const res = await axios.put(
-        "/api/user/profile",
+        "http://localhost:3000/api/user/profile",
         {
           name,
           email,

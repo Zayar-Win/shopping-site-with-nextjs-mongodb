@@ -75,7 +75,7 @@ const OrderAdmin = () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          "/api/admin/orders",
+          "http://localhost:3000/api/admin/orders",
           {
             headers: {
               authorization: `Bearer ${userInfo.token}`,

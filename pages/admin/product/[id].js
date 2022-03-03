@@ -107,7 +107,7 @@ const EditProduct = ({ params }) => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `/api/admin/products/${params.id}`,
+          `http://localhost:3000/api/admin/products/${params.id}`,
           {
             headers: {
               authorization: `Bearer ${userInfo.token}`,
@@ -152,7 +152,7 @@ const EditProduct = ({ params }) => {
     try {
       dispatch({ type: "UPDATE_REQUEST" });
       const { data } = await axios.put(
-        `/api/admin/products/${params.id}`,
+        `http://localhost:3000/api/admin/products/${params.id}`,
         {
           name,
           slug,

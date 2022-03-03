@@ -156,7 +156,7 @@ function OrderDetail({ params }) {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const res = await axios.get(
-          `/api/order/${params.id}`,
+          `http://localhost:3000/api/order/${params.id}`,
           {
             headers: {
               authorization: `Bearer ${userInfo.token}`,
@@ -192,7 +192,7 @@ function OrderDetail({ params }) {
     } else {
       const loadPaypalScript = async () => {
         const res = await axios.get(
-          "/api/keys/paypal",
+          "http://localhost:3000/api/keys/paypal",
           {
             headers: {
               authorization: `Bearer ${userInfo.token}`,
@@ -235,7 +235,7 @@ function OrderDetail({ params }) {
         try {
           dispatch({ type: "PAY_REQUEST" });
           const { data } = await axios.put(
-            `/api/order/${order._id}/pay`,
+            `http://localhost:3000/api/order/${order._id}/pay`,
             datails,
             {
               headers: {
@@ -267,7 +267,7 @@ function OrderDetail({ params }) {
     try {
       dispatch({ type: "DELIVER_REQUEST" });
       const { data } = await axios.put(
-        `/api/order/${id}/deliver`,
+        `http://localhost:3000/api/order/${id}/deliver`,
         {},
         {
           headers: {
