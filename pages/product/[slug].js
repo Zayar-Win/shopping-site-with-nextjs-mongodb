@@ -21,6 +21,8 @@ import axios from "axios";
 import { useContext } from "react";
 import { Store } from "../../utils/Store";
 import { Rating } from "@material-ui/lab";
+import db from "../../utils/db";
+import Product from "../../models/Product";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -64,7 +66,7 @@ const ProductDetail = ({ product }) => {
   });
   const clickHandler = async (product) => {
     const res = await axios.get(
-      "http://localhost:3000/api/products/" + product.slug
+      "/api/products/" + product.slug
     );
 
     const existItem = state.cart.cartItems.find(
@@ -89,7 +91,7 @@ const ProductDetail = ({ product }) => {
   const fetchReviews = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/api/products/${product._id}/review`
+        `/api/products/${product._id}/review`
       );
       setReviews(data);
     } catch (error) {
@@ -110,7 +112,7 @@ const ProductDetail = ({ product }) => {
     try {
       dispatch({ type: "SUBMIT_REVIEW_REQUEST" });
       const { data } = await axios.post(
-        `http://localhost:3000/api/products/${product._id}/review`,
+        `/api/products/${product._id}/review`,
         {
           rating,
           comment,
@@ -344,15 +346,21 @@ const ProductDetail = ({ product }) => {
 
 export default ProductDetail;
 
-export const getServerSideProps = async ({
-  params,
-}) => {
-  const product = await axios.get(
-    "http://localhost:3000/api/products/" + params.slug
-  );
+export const getServerSideProps = async (
+  context
+) => {
+  const { params } = context;
+  const { slug } = params;
+
+  await db.connect();
+  const product = await Product.findOne(
+    { slug },
+    "-reviews"
+  ).lean();
+  await db.disconnect();
   return {
     props: {
-      product: product.data,
+      product: db.convertDocToObj(product),
     },
   };
 };

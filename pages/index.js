@@ -5,6 +5,8 @@ import { useContext } from "react";
 import { Store } from "../utils/Store";
 import { useRouter } from "next/router";
 import ProductItem from "../components/ProductItem";
+import db from "../utils/db";
+import Product from "../models/Product";
 
 export default function Home({ products }) {
   const router = useRouter();
@@ -50,12 +52,16 @@ export default function Home({ products }) {
 }
 
 export const getServerSideProps = async () => {
-  const productList = await axios.get(
-    "http://localhost:3000/api/products"
-  );
+  await db.connect();
+  const featuredProductsDocs = await Product.find(
+    { isFeatured: true },
+    "-reviews"
+  ).lean();
   return {
     props: {
-      products: productList.data,
+      products: featuredProductsDocs.map(
+        db.convertDocToObj
+      ),
     },
   };
 };

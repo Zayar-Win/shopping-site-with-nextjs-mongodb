@@ -71,7 +71,7 @@ const AdminDashBoard = () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          "http://localhost:3000/api/admin/summary",
+          "/api/admin/summary",
           {
             headers: {
               authorization: `Bearer ${userInfo.token}`,

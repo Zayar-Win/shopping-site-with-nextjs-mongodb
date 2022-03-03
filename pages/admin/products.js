@@ -129,7 +129,7 @@ function AdminDashboard() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `http://localhost:3000/api/admin/products`,
+          `/api/admin/products`,
           {
             headers: {
               authorization: `Bearer ${userInfo.token}`,
@@ -282,7 +282,7 @@ function AdminDashboard() {
                   <Typography
                     className={classes.error}
                   >
-                    {error}
+                    {error.message}
                   </Typography>
                 ) : (
                   <TableContainer>
