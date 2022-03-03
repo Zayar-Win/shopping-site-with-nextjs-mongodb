@@ -75,7 +75,7 @@ const OrderHistory = () => {
         try {
           dispatch({ type: "FETCH_REQUEST" });
           const res = await axios.get(
-            "http://localhost:3000/api/order/history",
+            "/api/order/history",
             {
               headers: {
                 authorization: `Bearer ${userInfo.token}`,

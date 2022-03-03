@@ -165,7 +165,7 @@ function AdminDashboard() {
     try {
       dispatch({ type: "DELETE_REQUEST" });
       const { data } = await axios.delete(
-        `http://localhost:3000/api/admin/products/${id}`,
+        `/api/admin/products/${id}`,
         {
           headers: {
             authorization: `Bearer ${userInfo.token}`,
@@ -185,7 +185,7 @@ function AdminDashboard() {
     try {
       dispatch({ type: "CREATE_REQUEST" });
       const { data } = await axios.post(
-        "http://localhost:3000/api/admin/products",
+        "/api/admin/products",
         {},
         {
           headers: {

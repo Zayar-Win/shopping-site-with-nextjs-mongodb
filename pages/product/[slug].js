@@ -64,8 +64,7 @@ const ProductDetail = ({ product }) => {
   });
   const clickHandler = async (product) => {
     const res = await axios.get(
-      "http://localhost:3000/api/products/" +
-        product.slug
+      "/api/products/" + product.slug
     );
 
     const existItem = state.cart.cartItems.find(
@@ -90,7 +89,7 @@ const ProductDetail = ({ product }) => {
   const fetchReviews = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/api/products/${product._id}/review`
+        `/api/products/${product._id}/review`
       );
       setReviews(data);
     } catch (error) {
@@ -111,7 +110,7 @@ const ProductDetail = ({ product }) => {
     try {
       dispatch({ type: "SUBMIT_REVIEW_REQUEST" });
       const { data } = await axios.post(
-        `http://localhost:3000/api/products/${product._id}/review`,
+        `/api/products/${product._id}/review`,
         {
           rating,
           comment,
@@ -349,8 +348,7 @@ export const getServerSideProps = async ({
   params,
 }) => {
   const product = await axios.get(
-    "http://localhost:3000/api/products/" +
-      params.slug
+    "/api/products/" + params.slug
   );
   return {
     props: {

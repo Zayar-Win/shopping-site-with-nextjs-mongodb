@@ -44,7 +44,7 @@ const Register = () => {
     }
     try {
       const user = await axios.post(
-        "http://localhost:3000/api/user/register",
+        "/api/user/register",
         { name, email, password, confirmPassword }
       );
       if (user) {

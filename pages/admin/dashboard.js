@@ -23,7 +23,6 @@ import NextLink from "next/link";
 import useStyles from "../../utils/styles";
 import { Bar } from "react-chartjs-2";
 import axios from "axios";
-import { getError } from "../../utils/error";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -72,7 +71,7 @@ const AdminDashBoard = () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          "http://localhost:3000/api/admin/summary",
+          "/api/admin/summary",
           {
             headers: {
               authorization: `Bearer ${userInfo.token}`,
