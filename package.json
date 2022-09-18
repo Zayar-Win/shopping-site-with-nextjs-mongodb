@@ -2,6 +2,7 @@
   "name": "ecommerce-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://shopping-site-with-nextjs-mongodb.vercel.app",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
