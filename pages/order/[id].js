@@ -243,7 +243,6 @@ function OrderDetail({ params }) {
               },
             }
           );
-          console.log("pay ment done");
           dispatch({
             type: "PAY_SUCCESS",
             payload: data,

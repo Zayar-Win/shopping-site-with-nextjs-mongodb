@@ -13,8 +13,7 @@ export default function Home({ products }) {
   const { state, dispatch } = useContext(Store);
   const onClickHandler = async (product) => {
     const res = await axios.get(
-      "http://localhost:3000/api/products/" +
-        product.slug
+      "/api/products/" + product.slug
     );
     const exitItem = state.cart.cartItems.find(
       (item) => item._id === product._id

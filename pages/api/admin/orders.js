@@ -16,8 +16,7 @@ handler.use(isAuth, isAdmin);
 handler.get(async (req, res) => {
   await db.connect();
   const orders = await Order.find().populate(
-    "user",
-    "name"
+    "user"
   );
   await db.disconnect();
   res.status(200).json(orders);

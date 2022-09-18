@@ -32,8 +32,6 @@ function Cart() {
   } = state;
   const router = useRouter();
 
-  console.log(cartItems);
-
   const cartChangeHandler = async (
     item,
     quantity

@@ -64,6 +64,8 @@ const OrderAdmin = () => {
       orders: [],
     });
 
+  console.log(orders);
+
   useEffect(() => {
     if (!userInfo) {
       router.push("/login");
@@ -191,7 +193,7 @@ const OrderAdmin = () => {
                               )}
                             </TableCell>
                             <TableCell>
-                              {order.user.name}
+                              {order.user?.name}
                             </TableCell>
                             <TableCell>
                               {order.createdAt}

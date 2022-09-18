@@ -54,11 +54,12 @@ const ProductDetail = ({ product }) => {
   const [comment, setComment] = useState(null);
   const [reviews, setReviews] = useState([]);
   const {
-    state: { userInfo },
+    state: { userInfo, cart },
+    dispatch,
   } = useContext(Store);
   const [
     { reviewLoading, reviewError },
-    dispatch,
+    reviewDispatch,
   ] = useReducer(reducer, {
     loading: true,
     error: "",
@@ -68,14 +69,14 @@ const ProductDetail = ({ product }) => {
     const res = await axios.get(
       "/api/products/" + product.slug
     );
+    console.log(cart);
 
-    const existItem = state.cart.cartItems.find(
+    const existItem = cart.cartItems.find(
       (item) => item._id === product._id
     );
     const quantity = existItem
       ? existItem.quantity + 1
       : 1;
-    console.log(res);
     if (res.data.countInStock < quantity) {
       window.alert(
         "Sorry,Product is out of instock!!"
@@ -110,7 +111,9 @@ const ProductDetail = ({ product }) => {
       return;
     }
     try {
-      dispatch({ type: "SUBMIT_REVIEW_REQUEST" });
+      reviewDispatch({
+        type: "SUBMIT_REVIEW_REQUEST",
+      });
       const { data } = await axios.post(
         `/api/products/${product._id}/review`,
         {
@@ -123,14 +126,16 @@ const ProductDetail = ({ product }) => {
           },
         }
       );
-      dispatch({
+      reviewDispatch({
         type: "SUBMIT_REVIEW_SUCCESS",
         payload: data,
       });
 
       alert("Thank for review");
     } catch (error) {
-      dispatch({ type: "SUBMIT_REVIEW_FAIL" });
+      reviewDispatch({
+        type: "SUBMIT_REVIEW_FAIL",
+      });
       alert(error);
     }
   };
