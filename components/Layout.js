@@ -83,7 +83,7 @@ const Layout = ({ title, children }) => {
   const categoryFetch = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/products/categories"
+        "/api/products/categories"
       );
       setCategories(data);
     } catch (error) {
